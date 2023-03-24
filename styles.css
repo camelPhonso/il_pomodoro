@@ -1,0 +1,44 @@
+:root {
+  --khaki: #ceb992;
+  --blue: #73937e;
+  --violet: #5b2e48;
+  --gray: #585563;
+}
+
+* {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.15rem;
+  font-size: 5vmin;
+}
+
+body {
+  background-color: var(--khaki);
+}
+
+#tomato {
+  box-shadow: 0 2vmin 2vmin 1vmin var(--gray);
+  height: 30vmin;
+  width: 70vmin;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -15vmin;
+  margin-left: -35vmin;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+input[type="radio"] {
+  display: none;
+}
+label {
+  color: var(--blue);
+}
+
+input:checked + label {
+  color: var(--violet);
+  font-size: 2rem;
+  text-transform: uppercase;
+}
