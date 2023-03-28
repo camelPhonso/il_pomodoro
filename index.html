@@ -9,12 +9,34 @@
     <title>Il Pomodoro Grande - pomodoro timer</title>
   </head>
   <body>
-    <div id="tomato">
-      <input id="work-timer" type="radio" name="timer" value="work" />
-      <label for="work-timer">work</label>
-
-      <input id="play-timer" type="radio" name="timer" value="play" />
-      <label for="play-timer">play</label>
-    </div>
+    <main>
+      <div id="countdown-timer"></div>
+      <div id="tomato" data-active="">
+        <input id="work-button" type="radio" name="timer" value="work" />
+        <label for="work-button">work</label>
+        <input id="rest-button" type="radio" name="timer" value="rest" />
+        <label for="rest-button">rest</label>
+      </div>
+      <div id="settings">
+        <form class="input-pair input-pair--work">
+          <label for="work-timer">work for:</label>
+          <input
+            id="work-timer"
+            class="input-pair__input input-pair__input--work"
+            type="number"
+            value="15"
+          />
+        </form>
+        <div class="input-pair input-pair--rest">
+          <label for="rest-timer">rest for:</label>
+          <input
+            id="rest-timer"
+            class="input-pair__input input-pair__input--rest"
+            type="number"
+            value="5"
+          />
+        </div>
+      </div>
+    </main>
   </body>
 </html>
