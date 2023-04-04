@@ -2,41 +2,83 @@ const timerDisplay = document.getElementById("countdown-timer");
 timerDisplay.innerHTML = ":";
 const tomato = document.getElementById("tomato");
 let currentState = tomato.dataset.active;
-currentState = false;
-// currentState set as false at deployment to evaluate as boolean
-
-const workTimer = document.querySelector("#work-timer").value;
-const restTimer = document.getElementById("rest-timer").value;
+let currentTimer = tomato.dataset.timer;
+let allIntervals = [];
 
 // countdown ////////////////////////////////////
 ////////////////////////////////////////////////
-function killswitch(timer, interval) {
-  if (timer < 0) return clearInterval(interval);
+function killswitch() {
+  allIntervals.forEach((interval) => clearInterval(interval));
+  if (currentState === "true") return switchTimer();
+  
+  timerDisplay.innerHTML = ":";
+  let radioButtons = document.querySelectorAll('input[type=radio]');
+  radioButtons.forEach(button => button.checked = false);
 }
 
-let countDown = (timer) => {
+function switchTimer() {
+  let workButton = document.getElementById("work-button");
+  let restButton = document.getElementById("rest-button");
+
+  switch (currentTimer) {
+    case "work":
+      restButton.click();
+      break;
+    case "rest":
+      workButton.click();
+      break;
+  }
+}
+
+function displayCountDown(total) {
+  let seconds = `0${Math.floor(total % 60)}`.slice(-2);
+  let minutes = `0${Math.floor(total / 60)}`.slice(-2);
+  
+  timerDisplay.innerHTML = `${minutes} : ${seconds}`;
+}
+
+function countDown(timer) {
   let total = timer * 60;
+  displayCountDown(total);
+
   let interval = setInterval(() => {
-    let seconds = `0${Math.floor(total % 60)}`.slice(-2);
-    let minutes = `0${Math.floor(total / 60)}`.slice(-2);
-    timerDisplay.innerHTML = `${minutes} : ${seconds}`;
+    displayCountDown(total);
     total--;
-    killswitch(total, interval); // replace with callback ??
+    if (total < 0) return killswitch();
   }, 1000);
+
+  allIntervals.push(interval);
 };
 
-// timeout functions //////////////////////////
-//////////////////////////////////////////////
+function turnOnTomato() {
+  switch (currentState) {
+    case "false":
+      currentState = "true";
+      workButton.click();
+      break;
+    case "true":
+      currentState = "false";
+      killswitch();
+      break;
+  }
+}
 
 // envent listeners ////////////////////////
 ///////////////////////////////////////////
-function turnOnTomato() {
-  let workButton = document.getElementById("work-button");
-  let restButton = document.getElementById("rest-work");
+let workButton = document.getElementById("work-button");
+let restButton = document.getElementById("rest-button");
+let startButton = document.getElementById("start-button");
 
-  currentState = true;
+startButton.addEventListener("click", () => turnOnTomato());
+
+workButton.addEventListener("click", () => {
+  let workTimer = document.getElementById("work-timer").value;
+  tomato.dataset.timer = "work";
   countDown(workTimer);
-  workButton.checked = true;
-}
+});
 
-tomato.addEventListener("click", turnOnTomato);
+restButton.addEventListener("click", () => {
+  let restTimer = document.getElementById("rest-timer").value;
+  tomato.dataset.timer = "rest";
+  countDown(restTimer);
+});

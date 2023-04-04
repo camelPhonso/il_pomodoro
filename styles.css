@@ -34,7 +34,6 @@ main {
 }
 
 #tomato {
-  box-shadow: 0 2vmin 2vmin 1vmin var(--gray);
   height: 30vmin;
   width: 70vmin;
   display: flex;
@@ -56,6 +55,16 @@ input:checked + label {
   color: var(--violet);
   font-size: 2rem;
   text-transform: uppercase;
+}
+
+#start-button{
+  position:absolute;
+  top:35vmin;
+  background-color:var(--violet);
+  border:none;
+  height:1rem;
+  width:2rem;
+  cursor: pointer;
 }
 
 #settings {

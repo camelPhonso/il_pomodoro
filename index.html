@@ -6,19 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <script src="main.js" defer></script>
+    <script src="tests.js" defer></script>
     <title>Il Pomodoro Grande - pomodoro timer</title>
   </head>
   <body>
     <main>
       <div id="countdown-timer"></div>
-      <div id="tomato" data-active="">
+
+      <div id="tomato" data-active="false" data-timer="work">
         <input id="work-button" type="radio" name="timer" value="work" />
         <label for="work-button">work</label>
         <input id="rest-button" type="radio" name="timer" value="rest" />
         <label for="rest-button">rest</label>
+        <button type="button" id="start-button"></button>
       </div>
+
       <div id="settings">
-        <form class="input-pair input-pair--work">
+        <div class="input-pair input-pair--work">
           <label for="work-timer">work for:</label>
           <input
             id="work-timer"
@@ -26,7 +30,7 @@
             type="number"
             value="15"
           />
-        </form>
+        </div>
         <div class="input-pair input-pair--rest">
           <label for="rest-timer">rest for:</label>
           <input
