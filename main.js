@@ -80,12 +80,16 @@ startButton.addEventListener("click", () => turnOnTomato());
 
 workButton.addEventListener("click", () => {
   let workTimer = document.getElementById("work-timer").value;
+  currentState = "true";
   currentTimer = "work";
+  allIntervals.forEach((interval) => clearInterval(interval));
   countDown(workTimer);
 });
 
 restButton.addEventListener("click", () => {
   let restTimer = document.getElementById("rest-timer").value;
+  currentState = "true";
   currentTimer = "rest";
+  allIntervals.forEach((interval) => clearInterval(interval));
   countDown(restTimer);
 });

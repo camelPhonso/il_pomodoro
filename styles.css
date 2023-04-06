@@ -59,13 +59,22 @@ input:checked + label {
 #start-button {
   position: absolute;
   top: 35vmin;
-  background-color: var(--blue);
-  border: none;
-  height: 1rem;
-  width: 2rem;
+  height: 5vmin;
+  width: 5vmin;
+  background-color: transparent;
   cursor: pointer;
-  border-radius: 15px;
-  box-shadow: 0 0 10px var(--violet);
+  border-top: 2.5vmin solid transparent;
+  border-bottom: 2.5vmin solid transparent;
+  border-left: 5vmin solid var(--blue);
+  border-right: none;
+}
+
+#start-button::before {
+  content: "|";
+  position: absolute;
+  top: -3.2vmin;
+  left: -6.5vmin;
+  color: var(--blue);
 }
 
 #settings {
