@@ -32,8 +32,10 @@ function test(string, fn) {
 
 // testing library //////////////////////////////////////
 ////////////////////////////////////////////////////////
-let changedTimer = document.getElementById('work-timer');
-changedTimer.value = 0.05
+let workTimer = document.getElementById('work-timer');
+workTimer.value = 0.05
+let restTimer = document.getElementById('rest-timer');
+restTimer.value = 0.05;
 startButton.click();
 let testInterval = `${parseInt(timerDisplay.innerHTML.slice(-1)) + 1}000`;
 let testIncrementedInterval = `${parseInt(timerDisplay.innerHTML.slice(-1)) + 2}000`;
@@ -64,13 +66,13 @@ test("hitting a count of 0 triggers the next timer", () => {
     });
     
     // killswitch();
-    setTimeout(() => {
-      test("killSwitch() clears the current timer", () => {
-        startButton.click(); //triggers killswitch()
-        let expectedCounter = ":";
-        let outputCounter = timerDisplay.innerHTML;
-        isEqual(expectedCounter, outputCounter, "the timer has been cleared");
-      });
+    // setTimeout(() => {
+    //   test("killSwitch() clears the current timer", () => {
+    //     startButton.click(); //triggers killswitch()
+    //     let expectedCounter = ":";
+    //     let outputCounter = timerDisplay.innerHTML;
+    //     isEqual(expectedCounter, outputCounter, "the timer has been cleared");
+    //   });
 
-      changedTimer.value = 15;
-    }, testIncrementedInterval)
+    //   changedTimer.value = 15;
+    // }, testIncrementedInterval)

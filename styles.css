@@ -2,7 +2,7 @@
   --khaki: #ceb992;
   --blue: #73937e;
   --violet: #5b2e48;
-  --gray: #585563;
+  --grey: #585563;
 }
 
 * {
@@ -40,7 +40,6 @@ main {
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-evenly;
-  cursor: pointer;
 }
 
 input[type="radio"] {
@@ -57,14 +56,16 @@ input:checked + label {
   text-transform: uppercase;
 }
 
-#start-button{
-  position:absolute;
-  top:35vmin;
-  background-color:var(--violet);
-  border:none;
-  height:1rem;
-  width:2rem;
+#start-button {
+  position: absolute;
+  top: 35vmin;
+  background-color: var(--blue);
+  border: none;
+  height: 1rem;
+  width: 2rem;
   cursor: pointer;
+  border-radius: 15px;
+  box-shadow: 0 0 10px var(--violet);
 }
 
 #settings {
@@ -86,4 +87,30 @@ input:checked + label {
   background: none;
   grid-column-start: 2;
   width: 2rem;
+}
+
+.button-label {
+  transition: all 1s;
+}
+
+.shiner {
+  animation: shine 0.5s 2;
+}
+
+@keyframes shine {
+  0% {
+    text-shadow: 0 0 15px var(--violet);
+  }
+  25% {
+    text-shadow: 0 0 25px var(--violet);
+  }
+  50% {
+    text-shadow: 0 0 50px var(--violet);
+  }
+  75% {
+    text-shadow: 0 0 25px var(--violet);
+  }
+  100% {
+    text-shadow: 0 0 15px var(--violet);
+  }
 }

@@ -7,16 +7,35 @@ let allIntervals = [];
 
 // countdown ////////////////////////////////////
 ////////////////////////////////////////////////
+function countDown(timer) {
+  let total = timer * 60;
+  let interval = setInterval(() => {
+    displayCountDown(total);
+    total--;
+    if (total < 0) return killswitch();
+  }, 1000);
+
+  allIntervals.push(interval);
+}
+
+function displayCountDown(total) {
+  let seconds = `0${Math.floor(total % 60)}`.slice(-2);
+  let minutes = `0${Math.floor(total / 60)}`.slice(-2);
+
+  timerDisplay.innerHTML = `${minutes} : ${seconds}`;
+}
+
 function killswitch() {
   allIntervals.forEach((interval) => clearInterval(interval));
   if (currentState === "true") return switchTimer();
-  
+
   timerDisplay.innerHTML = ":";
-  let radioButtons = document.querySelectorAll('input[type=radio]');
-  radioButtons.forEach(button => button.checked = false);
+  let radioButtons = document.querySelectorAll("input[type=radio]");
+  radioButtons.forEach((button) => (button.checked = false));
 }
 
 function switchTimer() {
+  animate();
   let workButton = document.getElementById("work-button");
   let restButton = document.getElementById("rest-button");
 
@@ -30,25 +49,13 @@ function switchTimer() {
   }
 }
 
-function displayCountDown(total) {
-  let seconds = `0${Math.floor(total % 60)}`.slice(-2);
-  let minutes = `0${Math.floor(total / 60)}`.slice(-2);
-  
-  timerDisplay.innerHTML = `${minutes} : ${seconds}`;
+function animate() {
+  for (let i = 0; i < 2; i++) {
+    setTimeout(() => {
+      timerDisplay.classList.toggle("shiner");
+    }, `${i * 2}000`);
+  }
 }
-
-function countDown(timer) {
-  let total = timer * 60;
-  displayCountDown(total);
-
-  let interval = setInterval(() => {
-    displayCountDown(total);
-    total--;
-    if (total < 0) return killswitch();
-  }, 1000);
-
-  allIntervals.push(interval);
-};
 
 function turnOnTomato() {
   switch (currentState) {
@@ -73,12 +80,12 @@ startButton.addEventListener("click", () => turnOnTomato());
 
 workButton.addEventListener("click", () => {
   let workTimer = document.getElementById("work-timer").value;
-  tomato.dataset.timer = "work";
+  currentTimer = "work";
   countDown(workTimer);
 });
 
 restButton.addEventListener("click", () => {
   let restTimer = document.getElementById("rest-timer").value;
-  tomato.dataset.timer = "rest";
+  currentTimer = "rest";
   countDown(restTimer);
 });
